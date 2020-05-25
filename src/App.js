@@ -1,24 +1,21 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import logo from './logo.svg';
 import './App.css';
+import {getVacantsServices} from './services/meet.services'
+
+import CanlendarWrapper from './components/CalendarWrapper';
 
 function App() {
+  useEffect(() => {
+    getVacantsServices().then(rsp => {
+      console.log(rsp.data);
+      
+    }).catch( error => console.log(error))
+  }, [])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <CanlendarWrapper/>
     </div>
   );
 }
